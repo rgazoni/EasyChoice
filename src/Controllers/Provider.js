@@ -9,25 +9,29 @@
 
 const { Provider } = require('../Database/Schema/Provider');
 
-const FetchProviderId = async (provider) => {
+const FetchProviders = async (provider) => {
 
-    const Find = await Provider.find({ 'provider_name': provider })
+    const Find = await Provider.find({ },'provider_name provider_id logo_path')
         .then(response => {
             //console.log(response);
-            return response;
+            return response.map((item) => {
+                return {
+                    provider_name: item.provider_name,
+                    provider_id: item.provider_id,
+                    logo_path: 'https://image.tmdb.org/t/p/w500' + item.logo_path,
+                }
+            });
         }).catch(err => {
-            return { provider_id: -1, err: err }
+            return { err: err }
         });
 
-    if (Find.length === 0) {
-        return { provider_id: -1, err: 'Provider not found' };
-    }
-
-    const provider_id = Find[0].provider_id;
-    //console.log(provider_id);
-
-    return { provider_id: provider_id }
+    const data = {
+        'total_results': Find.length,
+        'results': Find
+    };
+    //console.log(data);
+    return data;
 
 }
 
-module.exports = FetchProviderId;
+module.exports = { FetchProviders };

@@ -9,7 +9,6 @@ const providerSchema = new Schema({
 });
 
 const Provider = mongoose.model('Provider', providerSchema, 'providers');
-//Provider.createCollection();
 
 module.exports = {
     Provider: Provider

@@ -6,13 +6,23 @@ require('dotenv').config();
 require('./Database');
 
 const Url = require('./Controllers/Url.js');
-const FetchProviderId = require('./Controllers/Provider.js');
+const { FetchProviders } = require('./Controllers/Provider.js');
+const { FetchGenres } = require('./Controllers/Genre.js');
 
 const app = express();
 app.use(bodyParser.json());
 
+app.get('/genres', async (req,res)=>{
+    const genres = await FetchGenres();
+    //console.log(genres);
+    res.send(genres);
+})
 
-
+app.get('/providers', async (req,res)=>{
+    const provider = await FetchProviders();
+    //console.log(provider);
+    res.send(provider);
+})
 
 app.get('/api/movies', async (req, res) => {
     const { providerId, genreId } = req.query;
@@ -28,7 +38,6 @@ app.get('/api/movies', async (req, res) => {
     .then((response) => { return response.data; });
 
     //TODO Refine data
-
 
     //Send Data back to client
     console.log(movies);
