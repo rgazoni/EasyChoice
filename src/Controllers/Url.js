@@ -12,11 +12,15 @@ module.exports = class Url {
 
     currentUrl = this.baseUrl;
 
+    /**
+     * Options to add persistent parameters to the URL [
+     * with_watch_providers: provider_id ]
+     */ 
     addParam(paramName, paramValue){
         this.currentUrl = this.currentUrl + `&${paramName}=${paramValue}`;
     }
 
-    getUrl(){
+    toString(){
         return this.currentUrl;
     }
 }
