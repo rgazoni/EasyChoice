@@ -12,21 +12,26 @@ const app = express();
 app.use(bodyParser.json());
 
 
+
+
 app.get('/api/movies', async (req, res) => {
+    const { providerId, genreId } = req.query;
+
+    //URL formation
     const url = new Url();
-    const { platform } = req.query;
+    url.addParam('with_watch_providers', providerId);
+    url.addParam('with_genres', genreId);
 
-    console.log(platform);
-
-    const { provider_id } = FetchProviderId(platform);
-
-    url.addParam('with_watch_providers', provider_id);
-
+    //Axios GET request themoviedb  API
     const movies = await axios.get(url.toString(),
     { headers: { 'Accept-Encoding': 'application/json' } })
     .then((response) => { return response.data; });
 
-    //console.log(movies);
+    //TODO Refine data
+
+
+    //Send Data back to client
+    console.log(movies);
     res.send(movies);
 });
 
