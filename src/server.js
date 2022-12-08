@@ -15,12 +15,14 @@ app.use(bodyParser.json());
 app.get('/genres', async (req,res)=>{
     const genres = await FetchGenres();
     //console.log(genres);
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.send(genres);
 })
 
 app.get('/providers', async (req,res)=>{
     const provider = await FetchProviders();
     //console.log(provider);
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.send(provider);
 })
 
