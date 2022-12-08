@@ -37,12 +37,13 @@
   
   .content{
     position: relative;
-    margin-top: 8%;
+    margin-top: 5%;
     width: 100%;
   }
   
   .container {
-    width: 80%;
+    width: 100%;
+    background-color: red;
   }
   
   .spacer {
@@ -63,6 +64,16 @@
     font-size: 30px;
     color: rgb(52, 52, 52);
   }
+
+  .slide{
+    width: 100%;
+  }
+
+  .poster{
+    border-radius: 10px;
+    width: 25%;
+  }
+ 
 
   /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
   @media screen and (max-width: 500px) {
