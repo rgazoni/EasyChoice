@@ -1,24 +1,23 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const axios = require('axios');
 
 require('dotenv').config();
 require('./Database');
 
-const Url = require('./Controllers/Url.js');
 const { FetchProviders } = require('./Controllers/Provider.js');
 const { FetchGenres } = require('./Controllers/Genre.js');
+const { MoviesChoice } = require('./Controllers/MoviesChoice.js');
 
 const app = express();
 app.use(bodyParser.json());
 
-app.get('/genres', async (req,res)=>{
+app.get('/genres', async (req,res) => {
     const genres = await FetchGenres();
     //console.log(genres);
     res.send(genres);
 })
 
-app.get('/providers', async (req,res)=>{
+app.get('/providers', async (req,res) => {
     const provider = await FetchProviders();
     //console.log(provider);
     res.send(provider);
@@ -26,24 +25,9 @@ app.get('/providers', async (req,res)=>{
 
 app.get('/api/movies', async (req, res) => {
     const { providerId, genreId } = req.query;
-
-    //URL formation
-    const url = new Url();
-    url.addParam('with_watch_providers', providerId);
-    url.addParam('with_genres', genreId);
-
-    //Axios GET request themoviedb  API
-    const movies = await axios.get(url.toString(),
-    { headers: { 'Accept-Encoding': 'application/json' } })
-    .then((response) => { return response.data; });
-
-    //TODO Refine data
-
-    //Send Data back to client
-    console.log(movies);
+    const movies = await MoviesChoice(providerId, genreId);
     res.send(movies);
 });
-
 
 app.listen(process.env.PORT, () => {
     console.log(`Listening on ${process.env.PORT}`); 
