@@ -1,12 +1,11 @@
+let providers;
+let genres;
+
 window.addEventListener = ('load', function () {
-    let providers = getRequest("/providers");
-    let genres = getRequest("/genres");
-
-    console.log(providers);
-    console.log(genres);
-
-    localStorage.setItem("providers",JSON.stringify(providers));
-    localStorage.setItem("genres", genres);
+    getRequest("/providers")
+        .then((response) => {
+            localStorage.setItem("providers", JSON.stringify(response));})
+        .then(console.log(localStorage.getItem("providers")));
 
     console.log(localStorage.getItem("providers"));
 
