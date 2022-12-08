@@ -1,13 +1,17 @@
 const Url = require('./Url.js');
 const axios = require('axios');
 
-// const handleIncomingMovies = (movieData) => {
-//     return movieData.map((item) => {
-//         return{
-//            tile: item.original_title
-//         }
-//     });
-// }
+const handleIncomingMovies = (movieData) => {
+    return movieData.map((item) => {
+        return{
+           title: item.title,
+           release_date: item.release_date,
+           overview: item.overview,
+           poster_path: 'https://image.tmdb.org/t/p/w500' + item.poster_path,
+           genre_ids: item.genre_ids,
+        }
+    });
+}
 
 const MoviesChoice = async (providerId, genreId) => {
     //URL formation
@@ -21,8 +25,7 @@ const MoviesChoice = async (providerId, genreId) => {
     .then((response) => { return response.data; });
 
     //Refine incoming data
-    //handleIncomingMovies(movies.results);
-    return movies;
+    return handleIncomingMovies(movies.results);
 
 }
 
