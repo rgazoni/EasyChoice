@@ -1,6 +1,21 @@
 const bcrypt = require('bcrypt');
 const { User } = require('../Database/Schema/User');
 
+const hasUser = async (body) =>{
+    const {username} = body;
+  
+    const Find = await User.find({username:username})
+    .then(response =>{
+        return response;
+    }).catch(err =>{
+        return {err:err}
+    });
+   
+    if(Find.length !== 0){
+        return true;
+    }
+    return false;
+}
 
 const Signup = async (body) => {
 
@@ -12,29 +27,35 @@ const Signup = async (body) => {
         message: 'Username and password are required'
     }
 
-    //TODO Search if already exists the same username
-    //TODO Verify username is valid i.e. without special caracters
-
-    //Already add a salt
-    const saltRounds = 10;
-    bcrypt.genSalt(saltRounds, (err, salt) => {
-        bcrypt.hash(password, salt).then(async (hash) => {
-            const user = new User({
-                username: username,
-                password: hash,
-                salt: salt
+    //TODO Verify username is valid i.e. without special caracters 
+    if(! await hasUser(body)){
+         //Already add a salt
+        const saltRounds = 10;
+        bcrypt.genSalt(saltRounds, (err, salt) => {
+            bcrypt.hash(password, salt).then(async (hash) => {
+                const user = new User({
+                    username: username,
+                    password: hash,
+                    salt: salt
+                });
+                await user.save();
             });
-            await user.save();
         });
-    });
 
-    return {
-        status: true,
-        message: 'User added successfully'
+        return {
+            status: true,
+            message: 'User added successfully'
+        }
     }
+    else{
+        return {
+            status: false,
+            message: 'user already exist'
+        }
+    }
+ 
 
 };
-
 
 module.exports = {
     Signup: Signup
