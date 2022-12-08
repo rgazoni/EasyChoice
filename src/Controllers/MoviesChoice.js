@@ -24,7 +24,6 @@ const MoviesChoice = async (providerId, genreId) => {
     { headers: { 'Accept-Encoding': 'application/json' } })
     .then((response) => { return response.data; });
 
-
     //Refine incoming data
     return handleIncomingMovies(movies.results);
 

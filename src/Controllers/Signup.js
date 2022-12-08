@@ -4,11 +4,14 @@ const { User } = require('../Database/Schema/User');
 const hasUser = async (body) =>{
     const {username} = body;
   
-    const Find = await User.find({username:username})
+    const Find = await User.find({ username:username })
     .then(response =>{
         return response;
     }).catch(err =>{
-        return {err:err}
+        return {
+            status: false,
+            message:err
+        }
     });
    
     if(Find.length !== 0){
@@ -31,15 +34,13 @@ const Signup = async (body) => {
     if(! await hasUser(body)){
          //Already add a salt
         const saltRounds = 10;
-        bcrypt.genSalt(saltRounds, (err, salt) => {
-            bcrypt.hash(password, salt).then(async (hash) => {
-                const user = new User({
-                    username: username,
-                    password: hash,
-                    salt: salt
-                });
-                await user.save();
+
+        bcrypt.hash(password, saltRounds).then(async (hash) => {
+            const user = new User({
+                username: username,
+                password: hash
             });
+            await user.save();
         });
 
         return {
@@ -53,8 +54,6 @@ const Signup = async (body) => {
             message: 'user already exist'
         }
     }
- 
-
 };
 
 module.exports = {
