@@ -5,10 +5,18 @@ window.addEventListener = ('load', function () {
     getRequest("/providers")
         .then((response) => {
             localStorage.setItem("providers", JSON.stringify(response));})
-        .then(console.log(localStorage.getItem("providers")));
+        // .then(console.log(localStorage.getItem("providers")));
 
-    console.log(localStorage.getItem("providers"));
+    getRequest("/genres")
+        .then((response) => {
+            localStorage.setItem("genres", JSON.stringify(response));})
+        // .then(console.log(localStorage.getItem("providers")));
 
+    providers = JSON.parse(localStorage.getItem("providers"));
+    genres = JSON.parse(localStorage.getItem("genres"));
+    // console.log(providers);
+    console.log(genres);
+    
 })
 
 async function getRequest(url) {
@@ -19,4 +27,6 @@ async function getRequest(url) {
     console.log(data);
     return data;
 }
+
+
 
