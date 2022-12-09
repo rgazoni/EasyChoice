@@ -1,10 +1,10 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const { User } = require('../Database/Schema/User');
 
+const Login = async (req, res) => {
 
-const Login = async (body) => {
-
-    const { username, password } = body;
+    const { username, password } = req.body;
 
     if(username === undefined || password === undefined)
     return {
@@ -29,10 +29,10 @@ const Login = async (body) => {
         }
     }
 
-    const match = bcrypt.compare(password, Find[0].password).then(function(result) {
+    const match = await bcrypt.compare(password, Find[0].password).then(function(result) {
         return result;
     });
-    
+
     if(!match) {
         return {
             status: false,
@@ -40,12 +40,18 @@ const Login = async (body) => {
         }
     }
 
-    //TODO Create a session and cookie for authentication purposes
-    //References https://anaeljonas.medium.com/login-com-node-js-em-5-minutos-8b5598dacda2
-    //https://www.youtube.com/watch?v=zt8Cocdy15c
-    //https://www.section.io/engineering-education/session-management-in-nodejs-using-expressjs-and-express-session/
-    //https://www.npmjs.com/package/bcrypt
+    Token = await jwt.sign({
+        id: Find[0]._id,
+        username: Find[0].username,
+    }, process.env.JWT_SECRET);
 
+    const oneDay = 1000 * 60 * 60 * 24;
+    const options = {
+        maxAge: oneDay,
+        secure: true,
+        httpOnly: true,
+    };
+    res.cookie('easychoice', Token, options);
 
     return {
         status: true,

@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 require('dotenv').config();
 require('./Database');
@@ -12,6 +13,13 @@ const { Login } = require('./Controllers/Login.js');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+//Development purposes
+app.use(express.static(__dirname));
+
 
 app.get('/genres', async (req,res) => {
     const genres = await FetchGenres();
@@ -38,11 +46,10 @@ app.post('/api/users/signup', async (req, res) => {
 });
 
 app.post('/api/users/login', async (req, res) => {
-    const response = await Login(req.body);
+    const response = await Login(req, res);
     console.log(response);
     res.send(response);
 });
-
 
 app.listen(process.env.PORT, () => {
     console.log(`Listening on ${process.env.PORT}`); 
