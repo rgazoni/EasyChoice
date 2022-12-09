@@ -1,3 +1,7 @@
+html, body {
+  height: 100%;
+}
+
 @font-face {
     font-family: "San Francisco";
     font-weight: 400;
@@ -34,16 +38,16 @@
     display: flex;
     justify-content: center;
   }
+
   
-  .content{
-    position: relative;
-    margin-top: 5%;
-    width: 100%;
-  }
-  
-  .container {
-    width: 100%;
+  .container-fluid {
     background-color: red;
+    justify-content: center;
+    min-height: calc(100% - 70px);
+  }
+
+  .carousel-indicators{
+    top: 10px!important;
   }
   
   .spacer {
@@ -70,8 +74,65 @@
   }
 
   .poster{
-    border-radius: 10px;
-    width: 25%;
+    /* border-radius: 10px; */
+    margin-top: 30%;
+    width: 80%;
+    height: fit-content;
+  }
+
+  .movie-info{
+    padding-top: 10%;
+  }
+
+  .watched-btn{
+    background-color: rgb(83, 83, 83);
+    color: rgb(238, 238, 238);
+    padding: 0.2rem 1.2rem 0.2rem 1.2rem;
+    border-radius: 25px;
+    z-index: 3;
+    transition: color .15s ease-in-out,
+      background-color .15s ease-in-out,
+      border-color .15s ease-in-out,
+      box-shadow .15s ease-in-out;
+  }
+
+  .watched-btn:hover{
+    background-color: rgb(65, 65, 65)!important;
+    color: rgb(238, 238, 238)!important;
+  }
+
+
+
+  .imdb-rate{
+    margin-bottom: .6rem;
+    padding-left: 10px;
+  }
+
+  .fa-play{
+    color: rgb(238, 238, 238);
+  }
+
+  .providers-container{
+    display: block;
+    justify-content: center;
+  }
+
+  .tags-container{
+    padding-top: 10%;
+  }
+
+  .tag-provider{
+    background: #000;
+    padding: 7px 12px 7px 12px;
+    border-radius: 20px;
+  }
+
+  .available-container{
+    padding-top: 5%;
+  }
+
+  .icon-provider{
+    width: 10px;
   }
  
 
