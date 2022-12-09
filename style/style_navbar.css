@@ -1,0 +1,46 @@
+.icons{
+    line-height: inherit!important;
+}
+
+.nav-item button {
+    background-color: none!important;
+    color: none;
+}
+
+.btn{
+    color:rgb(255, 255, 255);
+    border: none;
+}
+
+.btn:hover{
+    color:rgb(177, 175, 175);
+    border: none;
+}
+
+.btn:active{
+    color:rgb(119, 119, 119);
+    border: none;
+}
+
+.btn:focus{
+    color:rgb(255, 255, 255);
+}
+
+.navbar-toggler{
+    border: none!important;
+}
+
+.navbar-toggler:focus{
+    border: none!important;
+    /* background-color: aliceblue; */
+}
+
+#navbar{
+    background: linear-gradient(180deg, #560404 0%, rgba(152, 18, 18, 0) 65%);
+    /* background-color: red; */
+    backdrop-filter: blur(5px);
+}
+
+.fa-bars{
+color: white;
+}

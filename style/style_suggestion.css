@@ -1,0 +1,149 @@
+html,
+body {
+  height: 100%;
+}
+
+/* @font-face {
+    font-family: "San Francisco";
+    font-weight: 400;
+    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+    font-size: 24px;
+  } */
+
+h1{
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+body {
+  background-color: black;
+  padding-top: 65px;
+}
+
+.content {
+  /* background-color: red; */
+  /* justify-content: center; */
+  min-height: 100%
+}
+
+.carousel-indicators {
+  top: 50px !important;
+}
+
+.spacer {
+  margin: 10% auto;
+}
+
+
+h3 {
+  font-family: "San Francisco";
+  font-weight: 400;
+  font-size: 24px;
+  color: white;
+}
+
+h4 {
+  font-family: "San Francisco";
+  font-weight: 800;
+  font-size: 30px;
+  color: rgb(52, 52, 52);
+}
+
+.slide {
+  width: 100%;
+}
+
+.poster {
+  /* border-radius: 10px; */
+  margin-top: 30%;
+  width: 80%;
+  height: fit-content;
+}
+
+.movie-info {
+  padding-top: 10%;
+}
+
+.watched-btn {
+  background-color: rgb(83, 83, 83);
+  color: rgb(238, 238, 238);
+  padding: 0.2rem 1.2rem 0.2rem 1.2rem;
+  border-radius: 25px;
+  z-index: 3;
+  transition: color .15s ease-in-out,
+    background-color .15s ease-in-out,
+    border-color .15s ease-in-out,
+    box-shadow .15s ease-in-out;
+}
+
+.watched-btn:hover {
+  background-color: rgb(65, 65, 65) !important;
+  color: rgb(238, 238, 238) !important;
+}
+
+
+
+.imdb-rate {
+  margin-bottom: .6rem;
+  padding-left: 10px;
+}
+
+.fa-play {
+  color: rgb(238, 238, 238);
+}
+
+.providers-container {
+  display: block;
+  justify-content: center;
+}
+
+.tags-container {
+  padding-top: 10%;
+}
+
+.tag-provider {
+  background: #000;
+  padding: 7px 12px 7px 12px;
+  border-radius: 20px;
+}
+
+.available-container {
+  padding-top: 5%;
+}
+
+.icon-provider {
+  width: 10px;
+}
+
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+  .header {
+    margin-top: 47px;
+    margin: 47px 30px 0 0;
+    height: 50px;
+    width: 100%;
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .icons {
+    width: 25px;
+    height: 25px;
+  }
+
+  /* .container{
+      width: 80%;
+      margin-top: 30%;
+    } */
+
+  .subtitle {
+    width: 60%;
+  }
+
+  .spacer {
+    margin: 14% auto;
+  }
+
+}
