@@ -1,25 +1,34 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const axios = require('axios');
+const cookieParser = require('cookie-parser');
 
 require('dotenv').config();
 require('./Database');
 
-const Url = require('./Controllers/Url.js');
 const { FetchProviders } = require('./Controllers/Provider.js');
 const { FetchGenres } = require('./Controllers/Genre.js');
+const { MoviesChoice } = require('./Controllers/MoviesChoice.js');
+const { Signup } = require('./Controllers/Signup.js');
+const { Login } = require('./Controllers/Login.js');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/genres', async (req,res)=>{
+
+//Development purposes
+app.use(express.static(__dirname));
+
+
+app.get('/genres', async (req,res) => {
     const genres = await FetchGenres();
     //console.log(genres);
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.send(genres);
 })
 
-app.get('/providers', async (req,res)=>{
+app.get('/providers', async (req,res) => {
     const provider = await FetchProviders();
     //console.log(provider);
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -28,24 +37,21 @@ app.get('/providers', async (req,res)=>{
 
 app.get('/api/movies', async (req, res) => {
     const { providerId, genreId } = req.query;
-
-    //URL formation
-    const url = new Url();
-    url.addParam('with_watch_providers', providerId);
-    url.addParam('with_genres', genreId);
-
-    //Axios GET request themoviedb  API
-    const movies = await axios.get(url.toString(),
-    { headers: { 'Accept-Encoding': 'application/json' } })
-    .then((response) => { return response.data; });
-
-    //TODO Refine data
-
-    //Send Data back to client
-    console.log(movies);
+    const movies = await MoviesChoice(providerId, genreId);
     res.send(movies);
 });
 
+app.post('/api/users/signup', async (req, res) => {
+    const response = await Signup(req.body);
+    console.log(response);
+    res.send(response);
+});
+
+app.post('/api/users/login', async (req, res) => {
+    const response = await Login(req, res);
+    console.log(response);
+    res.send(response);
+});
 
 app.listen(process.env.PORT, () => {
     console.log(`Listening on ${process.env.PORT}`); 

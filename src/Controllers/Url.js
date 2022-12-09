@@ -5,10 +5,11 @@ module.exports = class Url {
     api_key = `api_key=${process.env.API_KEY}`;
     
     //Only BR for dev purposes
-    language = 'language=pt-BR';
+    language = 'language=pt-br';
     watch_region = 'BR';
 
-    baseUrl = `${this.domain}${this.path}?${this.api_key}&${this.language}&watch_region=${this.watch_region}&sort_by=primary_release_date.desc`;
+    baseUrl = `${this.domain}${this.path}?${this.api_key}&${this.language}&watch_region=${this.watch_region}`;
+    //TODO try to maxime movies with overview and backdrop
 
     currentUrl = this.baseUrl;
 
