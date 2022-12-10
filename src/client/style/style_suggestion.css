@@ -60,6 +60,16 @@ h4 {
   height: fit-content;
 }
 
+.img-container{
+  position: fixed;
+  /* height: 200px!important;
+  width: 100%!important; */
+}
+
+.img-container img{
+  height: 100%;
+}
+
 .movie-info {
   padding-top: 10%;
 }
