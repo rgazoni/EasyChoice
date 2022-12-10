@@ -52,9 +52,9 @@ async function getRecommendations(){
         genreId : selectedGenres
     });
 
-    const results = await getRequest(url)
+    await getRequest(url)
     .then((response) => {
-        return response;
+        localStorage.setItem("results", JSON.stringify(response));
+        location.href = "./suggestion.html";
     });
-    localStorage.setItem("results", JSON.stringify(results));
 }
