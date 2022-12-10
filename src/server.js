@@ -10,8 +10,8 @@ const { FetchGenres } = require('./Controllers/Genre.js');
 const { MoviesChoice } = require('./Controllers/MoviesChoice.js');
 const { Signup } = require('./Controllers/Signup.js');
 const { Login } = require('./Controllers/Login.js');
-const { Authentication } = require('./Controllers/Authentication.js');
-const { Watched } = require('./Controllers/Watched.js');
+// const { Authentication } = require('./Controllers/Authentication.js');
+// const { Watched } = require('./Controllers/Watched.js');
 
 const app = express();
 app.use(bodyParser.json());
