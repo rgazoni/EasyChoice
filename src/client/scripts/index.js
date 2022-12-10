@@ -1,6 +1,6 @@
 const type = 0;
-const selectedGenders = [];
-const selectedProviders = [];
+var selectedGenres = [];
+var selectedProviders = [];
 
 function changeType(){
     var textMovie = document.getElementById("textMovie");
@@ -18,25 +18,20 @@ function changeType(){
     }
 }
 
-function getSelectedValues(select){
-    var values = [];
-    console.log(select);
-    for(const option of select.options) {
-        console.log(option);
-        if(option.selected){
-        }
-    }
-    console.log(values);
-    return values;
-}
-
-function getRecommendations(){
+async function getRecommendations(){
     var selectGenres = document.getElementById("selectGenres");
     var selectProviders = document.getElementById("selectProviders");
-    
-    var selectedGenres = Array.from(selectGenres.selectedOptions).map(x=>x.value??x.text);
-    var selectedProviders = Array.from(selectProviders.selectedOptions).map(x=>x.value??x.text);
-    // if(type == 0) // movie
-    // else //serie
-}
+ 
+    selectedGenres = Array.from(selectGenres.selectedOptions).map(x=>x.value??x.text);
+    selectedProviders = Array.from(selectProviders.selectedOptions).map(x=>x.value??x.text);
 
+    let url = '/api/movies?' + new URLSearchParams({
+        providerId : selectedProviders,
+        genreId : selectedGenres
+    });
+
+    const results = await getRequest(url)
+    .then((response) => {
+        return response;
+    });
+}

@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const axios = require('axios');
+const cors = require('cors');
 
 require('dotenv').config();
 require('./Database');
@@ -17,6 +19,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
 
 app.use(express.static(__dirname + '/client'));
