@@ -23,7 +23,7 @@ const FetchProviders = async (provider) => {
             });
         }).catch(err => {
             return { err: err }
-        });
+    });
 
     const data = {
         'total_results': Find.length,
