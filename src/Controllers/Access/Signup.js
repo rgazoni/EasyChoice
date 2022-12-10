@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { User } = require('../Database/Schema/User');
+const { User } = require('../../Database/Schema/User');
 
 const hasUser = async (body) =>{
     const {username} = body;
@@ -51,7 +51,7 @@ const Signup = async (body) => {
     else{
         return {
             status: false,
-            message: 'user already exist'
+            message: 'User already exists'
         }
     }
 };
