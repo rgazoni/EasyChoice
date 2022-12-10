@@ -22,8 +22,8 @@ app.use(cookieParser());
 app.use(cors());
 
 
-// app.use(express.static(__dirname + '/client'));
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/client'));
+// app.use(express.static(__dirname));
 
 
 app.get('/genres', async (req,res) => {

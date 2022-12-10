@@ -81,19 +81,22 @@ body {
 }
 
 .box button{
-  font-family: "San Francisco";
+  font-family: "Inter";
   font-weight: 600;
   font-size: 24px;
   color: white;
   /* box-sizing: border-box; */
   background: #8C1B11;
-  border: 1px solid #52110B;
-  border-radius: 21px;
+  /* border: 1px solid #52110B; */
+  box-shadow: 4px 4px #52110B;
+  letter-spacing: -0.5px;
+  
 }
 
 .box button:hover{
   color: rgb(189, 189, 189);
-  background: #3b0602;
+  background: #52110B;
+  box-shadow: 4px 4px #240705;
   transition: all 0.4s;
 }
 
@@ -107,11 +110,12 @@ body {
 }
 
 h3 {
-  font-family: "San Francisco";
-  font-weight: 400;
+  font-family: "Inter";
+  font-weight: 500;
   font-size: 24px;
+  letter-spacing: -0.5px;
   color: white;
-  border-bottom: #444444;
+  /* border-bottom: #444444; */
 }
 
 .unselected{
@@ -120,15 +124,16 @@ h3 {
 }
 
 .selected{
-  font-weight: bold;
+  font-weight: 700;
   color: white;
   transition: linear 250ms;
 }
 
 h4 {
-  font-family: "San Francisco";
+  font-family: "Inter";
   font-weight: 800;
-  font-size: 30px;
+  letter-spacing: -1px;
+  font-size: 35px;
   color: rgb(81, 81, 81);
 }
 
