@@ -3,13 +3,16 @@ const axios = require('axios');
 
 const handleIncomingMovies = (movieData) => {
     return movieData.map((item) => {
+        
+        const backdrop_path = item.backdrop_path !== null ?
+        'https://image.tmdb.org/t/p/original' + item.backdrop_path : null;
+
         return{
            title: item.title,
            release_date: item.release_date,
            overview: item.overview,
            poster_path: 'https://image.tmdb.org/t/p/w500' + item.poster_path,
-           //TODO: Handle backdrop null
-           backdrop_path: 'https://image.tmdb.org/t/p/original' + item.backdrop_path,
+           backdrop_path: backdrop_path,
            genre_ids: item.genre_ids,
         }
     });
