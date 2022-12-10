@@ -18,10 +18,16 @@ const handleIncomingMovies = (movieData) => {
 const MoviesChoice = async (providerId, genreId) => {
     //URL formation
     const url = new Url();
-    //TODO If parameter is not null
-    url.addParam('with_watch_providers', providerId);
-    url.addParam('with_genres', genreId);
-    
+
+    if(providerId !== undefined && genreId === undefined){
+        url.addParam('with_watch_providers', providerId);
+    }else if(providerId === undefined && genreId !== undefined){
+        url.addParam('with_genres', genreId);
+    }else if(providerId !== undefined && genreId !== undefined){
+        url.addParam('with_genres', genreId);
+        url.addParam('with_watch_providers', providerId);
+    }
+
     //Axios GET request themoviedb  API
     const movies = await axios.get(url.toString(),
     { headers: { 'Accept-Encoding': 'application/json' } })
