@@ -8,7 +8,7 @@ module.exports = class Url {
     language = 'language=pt-br';
     watch_region = 'BR';
 
-    baseUrl = `${this.domain}${this.path}?${this.api_key}&${this.language}&watch_region=${this.watch_region}`;
+    baseUrl = `${this.domain}${this.path}?${this.api_key}&${this.language}&watch_region=${this.watch_region}&sort_by=popularity.desc`;
     //TODO try to maxime movies with overview and backdrop
 
     currentUrl = this.baseUrl;
