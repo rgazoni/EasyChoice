@@ -2,15 +2,58 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">Acesse sua conta</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Modal body text goes here.</p>
+                <div class="mb-3">
+                    <label for="loginEmailInput" class="form-label">Endereço de email</label>
+                    <input type="email" class="form-control" id="loginEmailInput" placeholder="nome@exemplo.com">
+                </div>
+                <div class="mb-3">
+                    <label for="loginPasswordInput" class="form-label">Senha</label>
+                    <input type="password" class="form-control" id="loginPasswordInput">
+                </div>
+                <div class="d-flex">
+                    <p>Ainda não é membro?</p>
+                    <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#registerModal">Crie sua conta</a>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="registerModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Crie sua conta</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="registerUsernameInput" class="form-label">Usuário</label>
+                    <input type="text" class="form-control" id="registerUsernameInput" placeholder="Ex: Vinícius">
+                </div>
+                <div class="mb-3">
+                    <label for="registerEmailInput" class="form-label">Endereço de email</label>
+                    <input type="email" class="form-control" id="registerEmailInput" placeholder="nome@exemplo.com">
+                </div>
+                <div class="mb-3">
+                    <label for="registerPasswordInput" class="form-label">Senha</label>
+                    <input type="password" class="form-control" id="registerPasswordInput">
+                </div>
+                <div class="d-flex">
+                    <p>Já é cadastrado?</p>
+                    <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#loginModal">Acesse sua conta</a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Registrar</button>
             </div>
         </div>
     </div>
@@ -32,9 +75,11 @@
                     </button>
                 </li> -->
                 <li class="nav-item">
-                    <button class="nav-link btn" type="button">
-                        <i class="fa-solid fa-clock-rotate-left fa-2xl fa-fw icons"></i>
-                    </button>
+                    <a href="./../watchedhistory.html">
+                        <button class="nav-link btn" type="button">
+                            <i class="fa-solid fa-clock-rotate-left fa-2xl fa-fw icons"></i>
+                        </button>
+                    </a>    
                 </li>
                 <li class="nav-item">
                     <button class="nav-link btn" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">

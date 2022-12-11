@@ -10,11 +10,6 @@ body {
     font-size: 24px;
   } */
 
-h1{
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-}
-
 body {
   background-color: black;
   padding-top: 65px;
@@ -35,7 +30,7 @@ body {
 }
 
 
-h3 {
+/* h3 {
   font-family: "San Francisco";
   font-weight: 400;
   font-size: 24px;
@@ -47,7 +42,7 @@ h4 {
   font-weight: 800;
   font-size: 30px;
   color: rgb(52, 52, 52);
-}
+} */
 
 .slide {
   width: 100%;
@@ -90,8 +85,6 @@ h4 {
   background-color: rgb(65, 65, 65) !important;
   color: rgb(238, 238, 238) !important;
 }
-
-
 
 .imdb-rate {
   margin-bottom: .6rem;
