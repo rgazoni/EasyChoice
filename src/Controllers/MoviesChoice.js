@@ -18,6 +18,7 @@ const dataPresentation = async (movieData) => {
            backdrop_path: backdrop_path,
            providers: list_providers,
            genre_ids: item.genre_ids,
+           vote_average: item.vote_average,
         }
     }));
 }
