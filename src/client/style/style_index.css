@@ -139,6 +139,14 @@ h4 {
 
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
 @media screen and (max-width: 500px) {
+  body{
+    padding-top: 100px;
+  }
+
+  .content{
+    padding: 0 5% 0 5%;
+  }
+  
   .header {
     margin-top: 47px;
     margin: 47px 30px 0 0;
@@ -155,7 +163,7 @@ h4 {
   }
 
   .subtitle{
-    width: 60%;
+    width: 70%;
   }
 
   .spacer {
