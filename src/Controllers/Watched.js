@@ -73,7 +73,7 @@ const getWatched = async (req, res) => {
 
 const delMovieWatched = async (req, res) => {
     
-    const response = await Authentication(req, res, next);
+    const response = await Authentication(req, res);
     const movieId = req.body.movieId;
 
     if(!response.status){
@@ -84,15 +84,13 @@ const delMovieWatched = async (req, res) => {
 
     const Find = await UserMovies.find({ userId: userId })
         .then(response => {
-            //console.log(response);
+            // console.log(response);
             return response; })
         .catch(err => {
             return { err: err }
     });
 
-    Find[0].moviesWatched
-
-    const movie = movies.find(movie => {
+    const movie = Find[0].moviesWatched.find(movie => {
         if(movie.id === movieId) {
             return movie;
         }

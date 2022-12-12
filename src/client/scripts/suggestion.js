@@ -1,36 +1,39 @@
 let genres = JSON.parse(localStorage.getItem("genres"));
+let actualMovie;
+let userData;
 
-window.onload = ('load', function () {
+window.onload =
+  ("load",
+  function () {
     insertCarouselItem();
-})
+  });
 
-function insertCarouselItem(){
-    let carousel = document.getElementById("carousel");
-    let indicators = document.getElementById("indicators");
-    resultsList = JSON.parse(localStorage.getItem("results"));
-    let dataCarousel = '';
-    let dataIndicators = '';
+function insertCarouselItem() {
+  let carousel = document.getElementById("carousel");
+  let indicators = document.getElementById("indicators");
+  resultsList = JSON.parse(localStorage.getItem("results"));
+  let dataCarousel = "";
+  let dataIndicators = "";
 
-    for(let i=0; i< resultsList.length; i++){
-        if(i==0){
-            dataCarousel += `<div class="carousel-item h-100 active">`;
-            dataIndicators += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" class="active"
+  for (let i = 0; i < resultsList.length; i++) {
+    if (i == 0) {
+      dataCarousel += `<div class="carousel-item h-100 active">`;
+      dataIndicators += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" class="active"
             aria-current="true" aria-label="Slide ${i}"></button>`;
-        }
-        else {
-            dataCarousel += `<div class="carousel-item h-100">`;
-            dataIndicators += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}"
+    } else {
+      dataCarousel += `<div class="carousel-item h-100">`;
+      dataIndicators += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}"
             aria-current="true" aria-label="Slide ${i}"></button>`;
-        }
-        dataCarousel += createItem(resultsList[i]);
     }
-    carousel.innerHTML = dataCarousel;
-    indicators.innerHTML = dataIndicators;
+    dataCarousel += createItem(resultsList[i]);
+  }
+  carousel.innerHTML = dataCarousel;
+  indicators.innerHTML = dataIndicators;
 }
 
-function createItem(result){
-    let data = '';
-    data += 
+function createItem(result) {
+  let data = "";
+  data +=
     `  <div class="row h-100">
              <div class="col-md-3 offset-2 bg-success d-flex justify-content-center">
              <img src="${result.poster_path}" class="rounded poster" alt="">   
@@ -42,7 +45,7 @@ function createItem(result){
                      <h1>${result.title}</h1>
                      <span class="imdb-rate">IMDB ${result.vote_average}</span>
                    </div>  
-                   <button class="ms-auto btn watched-btn" type="button" data-bs-target="#carouselExampleIndicators" data-bs>
+                   <button class="ms-auto btn watched-btn" type="button" onclick="watchMovie()">
                    <div class="d-flex align-items-center">
                     <i class="fa-solid fx-xl fa-plus"></i>
                    <h6>Assistir</h6> 
@@ -56,67 +59,90 @@ function createItem(result){
               <div class="row tags-container">
                 <h3>Tags</h3>
                 <div>
-                  `+ movieTags(result)+`
+                  ` +
+    movieTags(result) +
+    `
                 </div>
               </div>
               <div class="row available-container">
                 <h3>Disponível em</h3>
                 <div class="providers-container">
-                  `+ movieProviders(result)+`
+                  ` +
+    movieProviders(result) +
+    `
                 </div>
               </div>
             </div>
           </div>
         </div> 
-    `
-    movieTags(result);
-    return data;
+    `;
+  movieTags(result);
+  return data;
 }
 
-function movieTags(result){
-    let tagsIds = result.genre_ids;
-    let tagsNames = [];
-    let data = '';
+function movieTags(result) {
+  let tagsIds = result.genre_ids;
+  let tagsNames = [];
+  let data = "";
 
-    tagsIds.map((item)=>{
-        for(let i=0; i<genres.total_results; i++){
-            if(genres.results[i].genre_id == item) tagsNames.push(genres.results[i].genre_name);
-        }
-    });
+  tagsIds.map((item) => {
+    for (let i = 0; i < genres.total_results; i++) {
+      if (genres.results[i].genre_id == item)
+        tagsNames.push(genres.results[i].genre_name);
+    }
+  });
 
-    tagsNames.map((item)=>{
+  tagsNames.map((item) => {
     data += 
     `   <span class="tag-provider badge">
             ${item}
         </span>
-    `
-    });
-    return data;
+    `;
+  });
+  return data;
 }
 
-function movieProviders(result){
-    let data = '';
-    for(provider in result.providers){
-        data += 
+function movieProviders(result) {
+  let data = "";
+  for (provider in result.providers) {
+    data += 
     `   <span class="tag-provider badge">
             <img class="icon-provider" src="${result.providers[provider].logo_path}" alt="${result.providers[provider].provider_name} logo">
                 ${result.providers[provider].provider_name}
         </span>
-    `
-    }
-    return data;
+    `;
+  }
+  return data;
 }
 
-// async function watchMovie(){
-//   let movieSelected = 
-//     await fetch("/api/users/watched", {
-//       method: "POST",
-//       headers: {
-//           Accept: "application/json, text/plain, */*",
-//           "Content-Type": "application/json",
-//         },
-//       body: JSON.stringify({
-//           movie: ,
-//       }),
-//   })
-// }
+async function watchMovie() {
+  let index = $(".active").attr("data-bs-slide-to");
+  actualMovie = resultsList[index];
+  userData = [];
+
+  await fetch("/api/users/watched", {
+    method: "GET"
+  })
+  .then((response) => response.json())
+  .then((data) => userData = data.data);
+
+  if(!JSON.stringify(userData).includes(actualMovie.title))
+      post("/api/users/watched");
+  else  
+      post("/api/users/watched/del"); 
+}
+
+async function post(url){ 
+    await fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        movie: actualMovie,
+      }),
+    })
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+}
