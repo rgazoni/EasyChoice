@@ -44,7 +44,7 @@ function createItem(result){
                    </div>  
                    <button class="ms-auto btn watched-btn" type="button" data-bs-target="#carouselExampleIndicators" data-bs>
                    <div class="d-flex align-items-center">
-                   <i class="fa-solid fx-xl fa-plus"></i>
+                    <i class="fa-solid fx-xl fa-plus"></i>
                    <h6>Assistir</h6> 
                  </div>
                   </button>
@@ -105,4 +105,18 @@ function movieProviders(result){
     `
     }
     return data;
+}
+
+async function watchMovie(){
+  let movieSelected = 
+    await fetch("/api/users/watched", {
+      method: "POST",
+      headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      body: JSON.stringify({
+          movie: ,
+      }),
+  })
 }

@@ -1,3 +1,4 @@
+<script src="./scripts/login.js"></script>
 <div class="modal fade" id="loginModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -6,22 +7,24 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="mb-3">
-                    <label for="loginEmailInput" class="form-label">Endereço de email</label>
-                    <input type="email" class="form-control" id="loginEmailInput" placeholder="nome@exemplo.com">
-                </div>
-                <div class="mb-3">
-                    <label for="loginPasswordInput" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="loginPasswordInput">
-                </div>
-                <div class="d-flex">
-                    <p>Ainda não é membro?</p>
-                    <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal"
-                        data-bs-target="#registerModal">Crie sua conta</a>
-                </div>
+                <form>
+                    <div class="mb-3">
+                        <label for="usernameInput" class="form-label">Usuário</label>
+                        <input type="text" class="form-control" id="usernameInput" autocomplete="on">
+                    </div>
+                    <div class="mb-3">
+                        <label for="loginPasswordInput" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="loginPasswordInput" autocomplete="on">
+                    </div>
+                </form>
+            <div class="d-flex">
+                <p>Ainda não é membro?</p>
+                <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal"
+                    data-bs-target="#registerModal">Crie sua conta</a>
+            </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Login</button>
+                <button type="button" class="btn btn-primary" onclick="signIn()">Login</button>
             </div>
         </div>
     </div>
@@ -34,18 +37,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="mb-3">
-                    <label for="registerUsernameInput" class="form-label">Usuário</label>
-                    <input type="text" class="form-control" id="registerUsernameInput" placeholder="Ex: Vinícius">
-                </div>
-                <div class="mb-3">
-                    <label for="registerEmailInput" class="form-label">Endereço de email</label>
-                    <input type="email" class="form-control" id="registerEmailInput" placeholder="nome@exemplo.com">
-                </div>
-                <div class="mb-3">
-                    <label for="registerPasswordInput" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="registerPasswordInput">
-                </div>
+                <form>
+                    <div class="mb-3">
+                        <label for="registerUsernameInput" class="form-label">Usuário</label>
+                        <input type="text" class="form-control" id="registerUsernameInput" placeholder="Ex: Vinícius" autocomplete="on">
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPasswordInput" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="registerPasswordInput" autocomplete="on">
+                    </div>
+                </form>
                 <div class="d-flex">
                     <p>Já é cadastrado?</p>
                     <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal"
@@ -53,7 +54,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Registrar</button>
+                <button type="button" class="btn btn-primary" onclick="signUp()">Registrar</button>
             </div>
         </div>
     </div>

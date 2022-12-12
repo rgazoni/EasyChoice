@@ -54,7 +54,6 @@ async function getRecommendations(){
         genreId : selectedGenres
     });
     url = url.replaceAll('%2C','|');
-    console.log(url);
     await getRequest(url)
     .then((response) => {
         localStorage.setItem("results", JSON.stringify(response));

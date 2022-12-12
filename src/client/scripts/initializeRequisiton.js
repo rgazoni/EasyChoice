@@ -19,7 +19,7 @@ window.onload = ('load', function () {
 })
 
 async function getRequest(url) {
-    let data = await fetch('http://localhost:4000' + url)
+    let data = await fetch(url)
         .then((response) => response.json())
         .then((data) => {return data});
 

@@ -47,8 +47,9 @@ app.get('/api/movies', async (req, res) => {
 });
 
 app.post('/api/users/signup', async (req, res) => {
+    console.log(req.body);
     const response = await Signup(req.body);
-    //console.log(response);
+    
     res.send(response);
 });
 
