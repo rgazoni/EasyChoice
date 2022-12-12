@@ -62,10 +62,9 @@ async function getRecommendations(){
 }
 
 async function isAuthenticated(){
-    let data = await getRequest('/api/users/auth')
-        .then((data) => {
-            return data.status;
-        });
+    let data = await fetch('/api/users/auth')
+        .then((response) => response.json())
+        .then((data) => {return data.status});
     return data;
 }
 

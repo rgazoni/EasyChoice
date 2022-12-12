@@ -18,7 +18,7 @@ async function loadMovies(){
         else{
             userData.map((id) => {
                 data += 
-                `   <div class="col-4 col-sm-2 pb-5 bg-danger d-flex justify-content-center">
+                `   <div class="col-4 col-sm-2 pb-5 d-flex justify-content-center">
                         <a class="d-flex justify-content-center poster-anchor">
                             <img src="${id.movie.poster_path}" class="rounded poster" alt="">
                         </a>

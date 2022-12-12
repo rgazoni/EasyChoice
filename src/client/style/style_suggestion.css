@@ -112,8 +112,20 @@ h4 {
 }
 
 .imdb-rate {
-  margin-bottom: .6rem;
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: small;
+  color: #FFE600;
+  margin-bottom: .8rem;
   padding-left: 10px;
+}
+
+.description p{
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: large;
+  letter-spacing: -0.5px;
+  color: #6C6C6C;
 }
 
 .fa-play {
@@ -130,7 +142,7 @@ h4 {
 }
 
 .tag-provider {
-  background: #000;
+  background: #8C1B11;
   padding: 7px 12px 7px 12px;
   border-radius: 20px;
 }

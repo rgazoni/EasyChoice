@@ -35,10 +35,10 @@ function createItem(result, index) {
   let data = "";
   data +=
     `  <div class="row h-100">
-             <div class="col-md-3 offset-2 bg-success d-flex justify-content-center">
+             <div class="col-md-3 offset-2 d-flex justify-content-center">
              <img src="${result.poster_path}" class="rounded poster" alt="">   
              </div>
-             <div class="movie-info col-md-5 bg-danger ">
+             <div class="movie-info col-md-5">
                <div class="row title d-flex">
                  <div class="col d-flex align-items-center">
                    <div class="d-flex align-items-end">
