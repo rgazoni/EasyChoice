@@ -1,6 +1,6 @@
 let genres = JSON.parse(localStorage.getItem("genres"));
 let actualMovie;
-let userData;
+let userData = [];
 
 window.onload =
   ("load",
@@ -25,13 +25,13 @@ function insertCarouselItem() {
       dataIndicators += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}"
             aria-current="true" aria-label="Slide ${i}"></button>`;
     }
-    dataCarousel += createItem(resultsList[i]);
+    dataCarousel += createItem(resultsList[i], i);
   }
   carousel.innerHTML = dataCarousel;
   indicators.innerHTML = dataIndicators;
 }
 
-function createItem(result) {
+function createItem(result, index) {
   let data = "";
   data +=
     `  <div class="row h-100">
@@ -45,7 +45,7 @@ function createItem(result) {
                      <h1>${result.title}</h1>
                      <span class="imdb-rate">IMDB ${result.vote_average}</span>
                    </div>  
-                   <button class="ms-auto btn watched-btn" type="button" onclick="watchMovie()">
+                   <button class="ms-auto btn watched-btn" id="watchButton${index}" type="button" onclick="watchMovie()">
                    <div class="d-flex align-items-center">
                     <i class="fa-solid fx-xl fa-plus"></i>
                    <h6>Assistir</h6> 
@@ -117,19 +117,35 @@ function movieProviders(result) {
 
 async function watchMovie() {
   let index = $(".active").attr("data-bs-slide-to");
+  let button = document.getElementById("watchButton"+index);
   actualMovie = resultsList[index];
-  userData = [];
 
   await fetch("/api/users/watched", {
-    method: "GET"
+      method: "GET"
   })
-  .then((response) => response.json())
-  .then((data) => userData = data.data);
+  .then((response) => response.json()
+  .then((data) => (userData = data.data)));
 
   if(!JSON.stringify(userData).includes(actualMovie.title))
+  {
       post("/api/users/watched");
+      button.classList.replace("watched-btn", "watch-btn");
+      button.innerHTML = 
+      `<div class="d-flex align-items-center">
+          <i class="fa-solid fx-xl fa-check"></i>
+          <h6>Assistido</h6> 
+       </div>`
+  }
   else  
-      post("/api/users/watched/del"); 
+  {
+      post("/api/users/watched/del");     
+      button.classList.replace("watch-btn", "watched-btn");
+      button.innerHTML = 
+      `<div class="d-flex align-items-center">
+          <i class="fa-solid fx-xl fa-plus"></i>
+          <h6>Assistir</h6> 
+       </div>`
+  }
 }
 
 async function post(url){ 

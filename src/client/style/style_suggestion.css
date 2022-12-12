@@ -69,6 +69,27 @@ h4 {
   padding-top: 10%;
 }
 
+.watch-btn {
+  background-color: #31970D;
+  color: rgb(238, 238, 238);
+  padding: 0.4rem 1.2rem 0.4rem 1.2rem;
+  border-radius: 25px;
+  z-index: 3;
+  transition: color .15s ease-in-out,
+    background-color .15s ease-in-out,
+    border-color .15s ease-in-out,
+    box-shadow .15s ease-in-out;
+}
+
+.watch-btn i{
+  padding-right: 10px;
+}
+
+.watch-btn:hover {
+  background-color: #297c0b !important;
+  color: rgb(238, 238, 238) !important;
+}
+
 .watched-btn {
   background-color: rgb(83, 83, 83);
   color: rgb(238, 238, 238);
