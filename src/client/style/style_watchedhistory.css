@@ -21,9 +21,18 @@ body {
 .poster {
     /* border-radius: 10px; */
     /* margin-top: 30%; */
-    width: 100%;
     /* height: fit-content; */
-  }
+    width: 80%;
+}
+
+.poster a:hover{
+    width: 13%;
+    position: absolute;
+}
+
+/* .poster-anchor{
+   width: 80%;
+} */
 
 
 

@@ -43,9 +43,10 @@ function createItem(result){
                      <span class="imdb-rate">IMDB ${result.vote_average}</span>
                    </div>  
                    <button class="ms-auto btn watched-btn" type="button" data-bs-target="#carouselExampleIndicators" data-bs>
-                    <i class="fa-solid fx-xl fa-plus"></i>
-                    &nbsp;
-                    Assistir
+                   <div class="d-flex align-items-center">
+                   <i class="fa-solid fx-xl fa-plus"></i>
+                   <h6>Assistir</h6> 
+                 </div>
                   </button>
                 </div>
               </div>
@@ -59,7 +60,7 @@ function createItem(result){
                 </div>
               </div>
               <div class="row available-container">
-                <h3>Disponivel em</h3>
+                <h3>Disponível em</h3>
                 <div class="providers-container">
                   `+ movieProviders(result)+`
                 </div>
