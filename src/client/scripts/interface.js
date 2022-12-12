@@ -65,20 +65,11 @@ async function getRecommendations(){
     });
 }
 
-async function changeLoginButton(){
-    let loginButton = $('#loginButton');
-    let test = document.querySelector('#test');;
-    console.log(loginButton);
-    console.log(test);
-
+async function isAuthenticated(){
     await getRequest('/api/users/auth')
         .then((data) => {
             console.log(data);
-            if(data.status){
-                loginButton.attr('data-bs-toggle', 'modal');
-                loginButton.attr('data-bs-target', '#loginModal');
-                // loginButton.removeAttr('data-bs-toggle');
-                // loginButton.removeAttr('data-bs-target');
-            }
-        });
+            if(data.status)return true;
+            else false;
+    });
 }
