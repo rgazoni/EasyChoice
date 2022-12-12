@@ -14,12 +14,19 @@ async function signIn(){
         }),
     })
     .then((response) => response.json())
-    .then((data) => console.log(data.message));
+    .then((data) => {
+        console.log(data.message);
+        console.log(data.status);
+        if(data.status)
+            window.location.reload();
+    });
+
 }
 
 async function signUp(){
     let user = $('#registerUsernameInput').val();
     let password = $('#registerPasswordInput').val();
+
     console.log(user);
     console.log(password);
     await fetch("/api/users/signup", {
@@ -34,7 +41,13 @@ async function signUp(){
         }),
     })
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => {
+        console.log(data);
+        if(data.status)
+            window.location.reload();
+    });
+
+    window.location.reload();
 }
 
 async function logout(){
@@ -42,3 +55,5 @@ async function logout(){
         method: "GET",
     });
 }
+
+

@@ -107,16 +107,16 @@ function movieProviders(result){
     return data;
 }
 
-async function watchMovie(){
-  let movieSelected = 
-    await fetch("/api/users/watched", {
-      method: "POST",
-      headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-      body: JSON.stringify({
-          movie: ,
-      }),
-  })
-}
+// async function watchMovie(){
+//   let movieSelected = 
+//     await fetch("/api/users/watched", {
+//       method: "POST",
+//       headers: {
+//           Accept: "application/json, text/plain, */*",
+//           "Content-Type": "application/json",
+//         },
+//       body: JSON.stringify({
+//           movie: ,
+//       }),
+//   })
+// }

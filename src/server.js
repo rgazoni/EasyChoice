@@ -14,6 +14,7 @@ const { Signup } = require('./Controllers/Access/Signup.js');
 const { Login } = require('./Controllers/Access/Login.js');
 const { Logout } = require('./Controllers/Access/Logout.js');
 const { getWatched, postWatched, delMovieWatched } = require('./Controllers/Watched.js');
+const { Authentication} = require('./Controllers/Access/Authentication.js');
 
 const app = express();
 app.use(bodyParser.json());
@@ -53,7 +54,15 @@ app.post('/api/users/signup', async (req, res) => {
     res.send(response);
 });
 
+app.get('/api/users/auth', async (req, res) => {
+    console.log(req.body);
+    const response = await Authentication(req, res);
+    
+    res.send(response);
+});
+
 app.post('/api/users/login', async (req, res) => {
+    console.log(req);
     const response = await Login(req, res);
     //console.log(response);
     res.send(response);

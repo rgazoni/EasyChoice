@@ -3,6 +3,10 @@ var selectedGenres = [];
 var selectedProviders = [];
 let resultsList;
 
+$(window).load(function() {
+    changeLoginButton();
+});
+
 function changeType(){
     var textMovie = document.getElementById("textMovie");
     var textSerie = document.getElementById("textSerie");
@@ -59,4 +63,22 @@ async function getRecommendations(){
         localStorage.setItem("results", JSON.stringify(response));
         location.href = "./suggestion.html";
     });
+}
+
+async function changeLoginButton(){
+    let loginButton = $('#loginButton');
+    let test = document.querySelector('#test');;
+    console.log(loginButton);
+    console.log(test);
+
+    await getRequest('/api/users/auth')
+        .then((data) => {
+            console.log(data);
+            if(data.status){
+                loginButton.attr('data-bs-toggle', 'modal');
+                loginButton.attr('data-bs-target', '#loginModal');
+                // loginButton.removeAttr('data-bs-toggle');
+                // loginButton.removeAttr('data-bs-target');
+            }
+        });
 }
