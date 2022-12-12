@@ -83,8 +83,13 @@
                     </a>    
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link btn" type="button"  id="loginButton" onemptied="" onload="changeLoginButton()">
+                    <button class="nav-link btn" type="button" id="loginButton" onclick="canLogin()">
                         <i class="fa-solid fa-user fa-2xl fa-fw icons"></i>
+                    </button>
+                </li>
+                <li class="nav-item" id="logoutButton">
+                    <button class="nav-link btn" type="button" id="logoutButton" onclick="canLogout()">
+                        <i class="fa-solid fa-right-from-bracket fa-2xl fa-fw icons"></i>
                     </button>
                 </li>
             </ul>

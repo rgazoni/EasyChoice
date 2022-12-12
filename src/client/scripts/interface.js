@@ -3,10 +3,6 @@ var selectedGenres = [];
 var selectedProviders = [];
 let resultsList;
 
-$(window).load(function() {
-    changeLoginButton();
-});
-
 function changeType(){
     var textMovie = document.getElementById("textMovie");
     var textSerie = document.getElementById("textSerie");
@@ -66,10 +62,29 @@ async function getRecommendations(){
 }
 
 async function isAuthenticated(){
-    await getRequest('/api/users/auth')
+    let data = await getRequest('/api/users/auth')
         .then((data) => {
-            console.log(data);
-            if(data.status)return true;
-            else false;
-    });
+            return data.status;
+        });
+    return data;
+}
+
+function canLogin(){
+    await = isAuthenticated()
+        .then((data) => {
+            if(!data)
+                $('#loginModal').modal('show');
+            else
+                alert("Um usuário já está logado.");
+        })
+}
+
+function canLogout(){
+    await = isAuthenticated()
+        .then((data) => {
+            if(data)
+                logout();
+            else
+                alert("Nenhum usuário está logado.");
+        })
 }

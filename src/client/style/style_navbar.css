@@ -80,3 +80,7 @@ h6 {
 .fa-bars{
 color: white;
 }
+
+.fa-right-from-bracket{
+    transform: rotate(0.5turn);
+}

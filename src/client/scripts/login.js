@@ -53,7 +53,8 @@ async function signUp(){
 async function logout(){
     await fetch("/api/users/logout", {
         method: "GET",
-    });
+    })
+    .then(window.location.reload());
 }
 
 
